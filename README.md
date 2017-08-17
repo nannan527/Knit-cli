@@ -4,7 +4,6 @@
 ## 安装
 ```
 npm install knit-cli -g
-
 ```
 
 ## 使用
@@ -22,5 +21,4 @@ npm install knit-cli -g
 
     list   List all the templates
     init   Generate a new project from a template
-
 ```
