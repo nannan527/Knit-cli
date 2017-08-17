@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony 
+#!/usr/bin/env node
 'use strict' 
 
 const program = require('commander') 
@@ -11,36 +11,24 @@ process.env.NODE_PATH = __dirname + '/../node_modules/'
 program.version(require('../package').version ) 
 
 // 定义使用方法 
-program.usage('<command>') 
+program.usage('<command> [options]') 
 
-// 定义命令
-// program.command('add')
-//     .description('Add a new template')
-//     // .alias('a') 
-//     .action(() => { 
-//         require('../command/add')() 
-//     }) 
 
 program.command('list')
     .description('List all the templates')
-    // .alias('l')
     .action(() => {
         require('../command/list')()
     })   
 
 program.command('init')
     .description('Generate a new project from a template')
-    // .alias('i')
     .action(() => {
         require('../command/init')()
     })
 
-// program.command('del')
-//     .description('Delete a template')
-//     // .alias('d')
-//     .action(() => {
-//         require('../command/delete')()
-//     }) 
+program.on('--help', function () {
+    console.log('\n');
+});   
 
 //处理参数 提供帮助信息
 program.parse(process.argv)
@@ -48,3 +36,4 @@ program.parse(process.argv)
 if (!program.args.length) {
     program.help()
 } 
+
