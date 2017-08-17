@@ -1,12 +1,13 @@
 # knit-cli
+前端开发脚手架工具
 
-# Installation
+## 安装
 ```
 npm install knit-cli -g
 
 ```
 
-# Usage
+## 使用
 ```
   Usage: knit <command> [options]
 
@@ -21,5 +22,5 @@ npm install knit-cli -g
 
     list   List all the templates
     init   Generate a new project from a template
-    
+
 ```
