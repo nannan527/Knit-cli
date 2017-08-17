@@ -22,3 +22,23 @@ npm install knit-cli -g
     list   List all the templates
     init   Generate a new project from a template
 ```
+
+## Commands
+### list
+```
+$ knit list
+
+    Please select a development template:
+
+  ★  simple -- gulp + browser-sync + jade + less + es5
+```
+
+### init
+```
+$ knit init 
+
+Template name: my-tpl-name
+
+Project name: new-project-name
+
+```
