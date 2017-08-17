@@ -1,0 +1,28 @@
+{
+    "name": "knit-cli",
+    "version": "1.0.1",
+    "description": "The front-end general scaffolding tools",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Orlando",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^2.1.0",
+        "co": "^4.6.0",
+        "co-prompt": "^1.0.0",
+        "commander": "^2.11.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "bugs": {
+        "url": ""
+    },
+    "homepage": "",
+    "bin": {
+        "knit": "bin/knit"
+    }
+}

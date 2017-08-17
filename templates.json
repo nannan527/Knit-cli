@@ -1,0 +1,9 @@
+{
+    "tpl": {
+        "simple": {
+            "url": "https://github.com/nannan527/WebStaticBuild.git",
+            "branch": "",
+            "describe": "gulp + browser-sync + jade + less + es5"
+        }
+    }
+}
