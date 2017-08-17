@@ -1,6 +1,6 @@
 {
     "name": "knit-cli",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "The front-end general scaffolding tools",
     "main": "index.js",
     "scripts": {
