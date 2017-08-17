@@ -16,12 +16,11 @@
     },
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/nannan527/Knit-cli"
     },
     "bugs": {
-        "url": ""
+        "url": "https://github.com/nannan527/Knit-cli/issues"
     },
-    "homepage": "",
     "bin": {
         "knit": "bin/knit"
     }
