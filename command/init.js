@@ -1,41 +1,85 @@
 'use strict'
-const exec = require('child_process').exec
 const co = require('co')
 const prompt = require('co-prompt')
-const config = require('../templates')
-const chalk = require('chalk')
 
-const confirm = prompt.confirm
+const generateOther = require('../lib/generate-other')  
+
+const download = require('download-git-repo')
+const ora = require('ora')
+const rm = require('rimraf').sync
+const path = require('path')
+const home = require('user-home')
+const exists = require('fs').existsSync
+const generate = require('../lib/generate')
+const logger = require('../lib/logger')
+
+
 
 module.exports = () => {
     co(function* () {
         // 处理用户输入
         let tplName = yield prompt('Template name: ')
-        let projectName = yield prompt('Project name: ')
-        let gitUrl
-        let branch
-        
 
-        if (!config.tpl[tplName]) {
-            console.log(chalk.red('\n × Template does not exit!'))
-            process.exit()
+        switch(tplName) {
+            case 'vue':
+                
+                let template = 'webpack'
+                let hasSlash = false
+                let rawName = '';
+
+                let inPlace = !rawName || rawName === '.'
+                let to = path.resolve(rawName || '.')
+               
+
+                let tmp = path.join(home, '.vue-templates', template.replace(/\//g, '-'))
+
+                run(template, inPlace, tmp, rawName, to);
+           
+
+                break;
+
+            default: //<-- simple 等等的模版
+                let projectName = yield prompt('Project name: ')
+                generateOther.runOther(tplName, projectName);
         }
-        gitUrl = config.tpl[tplName].url
-        branch = config.tpl[tplName].branch
 
-        // git命令，远程拉取项目并自定义项目名
-        let cmdStr = `git clone ${gitUrl} ${projectName} && cd ${projectName} && git checkout ${branch}`
+        
+    })
+}
 
-        console.log(chalk.white('\n Start generating...'))
 
-        exec(cmdStr, (error, stdout, stderr) => {
-            if (error) {
-                console.log(error)
-                process.exit()
-            }
-            console.log(chalk.green('\n √ Generation completed!'))
-            console.log(`\n cd ${projectName} && npm install \n`)
-            process.exit()
+
+/**
+ * Check, download and generate the project.
+ */
+
+function run(template, inPlace, tmp, name, to) {
+
+    let officialTemplate = 'vuejs-templates/' + template;
+    downloadAndGenerate(officialTemplate, tmp, name, to)
+        
+}
+
+
+/**
+ * Download a generate from a template repo.
+ *
+ * @param {String} template
+ */
+
+function downloadAndGenerate(template, tmp, name, to) {
+    var spinner = ora('downloading template')
+    spinner.start()
+    // Remove if local template exists
+    if (exists(tmp)) rm(tmp)
+    download(template, tmp, { clone: false }, function (err) {
+        spinner.stop()
+        if (err) logger.fatal('Failed to download repo ' + template + ': ' + err.message.trim())
+        
+        generate(name, tmp, to, function (err) {
+            if (err) logger.fatal(err)
+            console.log()
+            logger.success('Generated "%s".', name)
         })
     })
 }
