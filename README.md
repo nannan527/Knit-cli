@@ -1,6 +1,9 @@
 # knit-cli
 前端开发脚手架工具
 
+## 更新
+接入了Vue-cli脚手架，可以生成webpack类的模版
+
 ## 安装
 ```
 npm install knit-cli -g
@@ -31,6 +34,8 @@ $ knit list
     Please select a development template:
 
   ★  simple -- gulp + browser-sync + jade + less + es5
+  ★  vue -- A full-featured Webpack + vue-loader setup with hot reload, linting, testing & css extraction.
+  ★  vue-pwa -- PWA template for vue-cli based on the webpack template
 ```
 
 ### init
@@ -42,3 +47,4 @@ Template name: my-tpl-name
 Project name: new-project-name
 
 ```
+
