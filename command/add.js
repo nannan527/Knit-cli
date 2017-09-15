@@ -25,7 +25,7 @@ module.exports = () => {
             process.exit()
         }
 
-        // 把模板信息写入templates.json
+        // 把模板信息写入templates.json /d/
         fs.writeFile(__dirname + '/../templates.json', JSON.stringify(config), 'utf-8', (err) => {
             if (err) console.log(err)
             console.log(chalk.green('\nNew template added!\n'))
